@@ -23,7 +23,7 @@ export const useAuthStore = defineStore({
 
     async initializeUser() {
       const config = useRuntimeConfig();
-      const url = `${config.public.apiBaseUrl}/accounts/me/`;
+      const url = `${config.public.apiBaseUrl}/accounts/me`;
       let token = useCookie("session").value;
       if (!token) {
         token = this.token;
@@ -34,8 +34,6 @@ export const useAuthStore = defineStore({
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       } as any;
-
-	  console.log("Fetching user", url, headers);
 
       try {
 		const response = await fetch(url, {
@@ -58,7 +56,7 @@ export const useAuthStore = defineStore({
 
     async logout() {
       const config = useRuntimeConfig();
-      var url = `${config.public.baseUrl}/api/auth/logout`;
+      var url = `/api/auth/logout`;
       fetch(url, {
         method: "POST",
         headers: {
