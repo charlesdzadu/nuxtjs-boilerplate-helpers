@@ -19,12 +19,13 @@ export const useAuthStore = defineStore({
     },
   },
   actions: {
-
-
     async initializeUser() {
       const config = useRuntimeConfig();
+
       const url = `${config.public.apiBaseUrl}/accounts/me`;
       let token = useCookie("session").value;
+
+
       if (!token) {
         token = this.token;
       }
